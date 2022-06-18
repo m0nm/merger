@@ -1,0 +1,47 @@
+.container {
+  padding: 1rem;
+  width: 100%;
+  height: 100vh;
+}
+
+.main {
+  width: 100%;
+  height: 100%;
+  background-color: #f1f0c0;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+
+  h1 {
+    font-weight: 600;
+    font-size: 42px;
+    margin-bottom: 10px;
+    color: #111;
+  }
+
+  form {
+    margin-top: 4rem;
+  }
+
+  label {
+    width: 240px;
+    min-height: 40px;
+    padding: 1rem;
+    font-weight: 600;
+    font-size: 22px;
+    color: white;
+    border: 0;
+    border-radius: 14px;
+    background-color: #6cc4a1;
+    transition: background 0.15s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #64be9a;
+    }
+  }
+
+  input {
+    display: none;
+  }
+}
