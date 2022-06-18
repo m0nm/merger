@@ -1,5 +1,7 @@
-import Image from "next/image";
 import React, { useState } from "react";
+import SortableList, { SortableItem } from "react-easy-sort";
+import arrayMove from "array-move";
+
 import styles from "../styles/Main.module.scss";
 import FileCard from "./FileCard";
 
@@ -10,8 +12,10 @@ function Main() {
     const { files: pdfFiles } = e.target as HTMLInputElement;
 
     pdfFiles?.length && setFiles((prev) => [...prev, pdfFiles[0]]);
+  };
 
-    console.log(files);
+  const onSortEnd = (oldIndex: number, newIndex: number) => {
+    setFiles((array) => arrayMove(array, oldIndex, newIndex));
   };
 
   return (
@@ -37,11 +41,21 @@ function Main() {
           {/* show uploaded files */}
           {files.length > 0 && (
             <div className={styles.filesContainer}>
-              <div>
+              <h3>the order from left to right</h3>
+
+              {/* files uploaded */}
+              <SortableList
+                onSortEnd={onSortEnd}
+                draggedItemClassName={styles.dragged}
+              >
                 {files.map((file, i) => {
-                  return <FileCard fileName={file.name} key={i} />;
+                  return (
+                    <SortableItem key={i}>
+                      <FileCard fileName={file.name} />
+                    </SortableItem>
+                  );
                 })}
-              </div>
+              </SortableList>
             </div>
           )}
 
