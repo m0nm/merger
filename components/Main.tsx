@@ -58,6 +58,12 @@ function Main() {
     }
   };
 
+  // remove selected file
+  const removeFile = (index: number) => {
+    const newFiles = files.filter((file) => files.indexOf(file) !== index);
+    setFiles((prev) => newFiles);
+  };
+
   // display modal
   const displayModal = () => {
     setModal((prev) => true);
@@ -102,7 +108,11 @@ function Main() {
                 {files.map((file, i) => {
                   return (
                     <SortableItem key={i}>
-                      <FileCard fileName={file.name} />
+                      <FileCard
+                        fileName={file.name}
+                        index={i}
+                        removeFile={removeFile}
+                      />
                     </SortableItem>
                   );
                 })}

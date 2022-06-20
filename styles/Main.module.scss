@@ -59,15 +59,16 @@
 }
 
 .filesContainer > div {
-  width: 90%;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  place-items: center;
+  justify-content: center;
+  row-gap: 10px;
 }
 
 .file {
-  width: 180px;
+  position: relative;
+  width: 140px;
   min-height: 140px;
   margin: 12px;
   display: flex;
@@ -76,6 +77,23 @@
   align-items: center;
   text-align: center;
   user-select: none;
+
+  &:hover .remove {
+    display: grid;
+  }
+
+  .remove {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: -10px;
+    border-radius: 100%;
+    background: white;
+    padding: 2px;
+    place-items: center;
+    z-index: 10;
+    cursor: pointer;
+  }
 
   .icon {
     position: relative;

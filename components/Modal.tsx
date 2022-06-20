@@ -28,7 +28,7 @@ function Modal({ url = "", closeModal }: IModal) {
 
             <h1>Your PDF File Is Ready!</h1>
             <a href={url as string} download="merged.pdf">
-              Give It To Me
+              Download
             </a>
           </div>
         )}
