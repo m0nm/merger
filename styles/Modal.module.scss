@@ -10,6 +10,16 @@
   align-items: center;
 }
 
+@keyframes animate {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
 .modal {
   border-radius: 12px;
   padding: 1rem;
@@ -17,6 +27,7 @@
   width: 70%;
   min-height: 420px;
   background: white;
+  animation: animate 1s;
 
   h1 {
     font-size: 38px;
