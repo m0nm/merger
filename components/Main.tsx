@@ -31,8 +31,9 @@ function Main() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const formData: any = new FormData(e.currentTarget as HTMLFormElement);
-    formData.append("files", files);
+    const formData = new FormData();
+
+    files.forEach((file) => formData.append("files[]", file));
 
     try {
       const res = await axios.post(
@@ -40,6 +41,10 @@ function Main() {
         formData,
         {
           responseType: "blob",
+
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
       );
 
@@ -47,7 +52,9 @@ function Main() {
       const url = window.URL.createObjectURL(new Blob([res.data]));
       setDownUrl(url);
     } catch (error) {
+      console.log(error);
       alert("Something's wrong, Please try again.");
+      setModal(false);
     }
   };
 
@@ -68,14 +75,13 @@ function Main() {
         <h1>Merge Your Favorite PDF Files</h1>
         <p>Combine Them All With One Click.</p>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
           <label htmlFor="file">Select PDF Files</label>
           <input
             onChange={handleChange}
             onClick={(e) => {
               e.currentTarget.value = "";
             }}
-            name="files[]"
             id="file"
             type="file"
             multiple
