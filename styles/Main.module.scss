@@ -11,6 +11,10 @@
   border-radius: 12px;
   text-align: center;
 
+  @media screen and (max-width: 720px) {
+    padding: 12px 0;
+  }
+
   h1 {
     font-weight: 600;
     font-size: 42px;
@@ -64,6 +68,10 @@
   place-items: center;
   justify-content: center;
   row-gap: 10px;
+
+  @media screen and (max-width: 720px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .file {
